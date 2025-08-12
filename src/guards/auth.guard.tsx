@@ -1,15 +1,17 @@
+// src/guards/auth.guard.tsx
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PrivateRoutes, PublicRoutes } from '../models';
-import { AppStore } from '../redux/store';
+
 import { Props } from '../interfaces/guard.interface';
 import { clearLocalStorage } from '../utilities';
 import { UserKey, resetUser } from '../redux/states/user';
+import { useAppSelector } from '../redux/hooks';
 
 export const AuthGuard = ({ privateValidation }: Props) => {
-  const userState = useSelector((store: AppStore) => store.user);
-  const token = useSelector((store: AppStore) => store.user.token);
+  const userState = useAppSelector((state) => state.user);
+  const token = useAppSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const location = useLocation();
 

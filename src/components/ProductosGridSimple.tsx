@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { agregarProducto } from '../redux/states/carrito';
 import { useState } from "react";
 import ModalProducto from "./ModalProducto"; // Asegúrate de tener la ruta correcta
+import { Link } from "react-router-dom";
 
 
 interface Props {
@@ -70,6 +71,7 @@ const ProductosGridSimple = ({ productos }: Props) => {
         {productos.length === 0 && (
           <div className="text-muted text-center">
             No se encontraron productos.
+                    <Link to="/">  Volver a la tienda       </Link>
           </div>
         )}
       </div>

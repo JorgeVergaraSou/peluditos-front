@@ -9,54 +9,67 @@ import Admin from './pages/Private/Admin/Admin';
 import Header from './components/Header';
 import ProfilePage from './pages/Private/Profile';
 import RoutesWithNotFound from './utilities/RoutesWithNotFound.utility';
-import Register from './pages/Register/Register';
 import { store } from './redux/store';
 import CarritoFlotante from './components/CarritoFlotante';
 import WhatsAppButton from './components/WhatsAppButton';
+import { useEsPaginaProtegida } from './hooks/useEsPaginaProtegida';
+import CategoriaPage from './pages/Public/CategoriaPage';
+import Footer from './components/Footer';
 
 const Login = lazy(() => import('./pages/Login/Login'));
 const Private = lazy(() => import('./pages/Private/Private'));
 const HomePage = lazy(() => import('./pages/Public/HomePage'));
 
-function App() {
+function AppContent() {
+  const esPaginaProtegida = useEsPaginaProtegida();
+
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Provider store={store}>
-          <BrowserRouter>
-            <Header />
+    <>
+      <Header />
 
-            <RoutesWithNotFound>
+      <RoutesWithNotFound>
+        {/* Rutas públicas */}
+        <Route path="/" element={<Navigate replace to={PublicRoutes.HOME_PAGE} />} />
+        <Route path={PublicRoutes.HOME_PAGE} element={<HomePage />} />
+        <Route path={PublicRoutes.LOGIN} element={<Login />} />
+         <Route path="/productos/categoria/:categoria" element={<CategoriaPage />} />
 
-              {/* Rutas públicas */}
-              <Route path="/" element={<Navigate replace to={PublicRoutes.HOME_PAGE} />} />
-              <Route path={PublicRoutes.HOME_PAGE} element={<HomePage />} />
-              <Route path={PublicRoutes.LOGIN} element={<Login />} />
-              <Route path={PublicRoutes.REGISTER} element={<Register />} />
+        {/* Rutas privadas protegidas */}
+        <Route element={<AuthGuard privateValidation={true} />}>
+          <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<Private />} />
+          <Route path={PrivateRoutes.PERFIL} element={<ProfilePage />} />
 
-              {/* Rutas privadas protegidas */}
-              <Route element={<AuthGuard privateValidation={true} />}>
-                <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<Private />} />
-                <Route path={PrivateRoutes.PERFIL} element={<ProfilePage />} />
+          {/* Rutas solo admin */}
+          <Route element={<RoleGuard role={Roles.ADMIN} />}>
+            <Route path={PrivateRoutes.ADMIN} element={<Admin />} />
+          </Route>
 
-                {/* Rutas solo admin */}
-                <Route element={<RoleGuard role={Roles.ADMIN} />}>
-                  <Route path={PrivateRoutes.ADMIN} element={<Admin />} />                  
-                </Route>
-
-                {/* Logout */}
-                <Route path={PrivateRoutes.LOGOUT} element={<Navigate replace to={PublicRoutes.LOGIN} />} />
-              </Route>
-
-            </RoutesWithNotFound>
-
-                      <CarritoFlotante />
-            <WhatsAppButton />
-
-          </BrowserRouter>
-        </Provider>
-      </Suspense>
-    </div>
+          {/* Logout */}
+          <Route path={PrivateRoutes.LOGOUT} element={<Navigate replace to={PublicRoutes.LOGIN} />} />
+        </Route>
+      </RoutesWithNotFound>
+      <Footer />
+      {/* Mostrar solo en páginas no protegidas */}
+      {!esPaginaProtegida && (
+        <>
+          <CarritoFlotante />
+          <WhatsAppButton />
+        </>
+      )}
+    </>
   );
 }
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </Provider>
+    </Suspense>
+  );
+}
+
 export default App;
