@@ -11,6 +11,8 @@ import ProfilePage from './pages/Private/Profile';
 import RoutesWithNotFound from './utilities/RoutesWithNotFound.utility';
 import Register from './pages/Register/Register';
 import { store } from './redux/store';
+import CarritoFlotante from './components/CarritoFlotante';
+import WhatsAppButton from './components/WhatsAppButton';
 
 const Login = lazy(() => import('./pages/Login/Login'));
 const Private = lazy(() => import('./pages/Private/Private'));
@@ -47,6 +49,9 @@ function App() {
               </Route>
 
             </RoutesWithNotFound>
+
+                      <CarritoFlotante />
+            <WhatsAppButton />
 
           </BrowserRouter>
         </Provider>
