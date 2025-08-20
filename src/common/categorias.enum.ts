@@ -1,3 +1,4 @@
+// src/common/categorias.enum.ts
 export enum CategoriasEnum {
     PERROS = 'PERROS',
     CACHORROS = 'CACHORROS',

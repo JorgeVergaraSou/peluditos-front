@@ -10,7 +10,8 @@ export const PrivateRoutes = {
     PRIVATE: 'private',
     ADMIN: 'admin',
     USER: 'user',
-    GUEST: 'guest',
+    NUEVO_PRODUCTO: 'private/admin/nuevo-producto',
+    LISTAR_PRODUCTOS: 'private/admin/listar-productos',
     LOGOUT: 'logout',
     PERFIL: 'perfil',
 }

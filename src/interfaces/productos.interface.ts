@@ -1,4 +1,6 @@
+// src/interfaces/productos.interface.ts
 import { CategoriasEnum } from "../common/categorias.enum";
+import { EdadEnum } from "../common/edad.enum";
 
 export interface ProductosInterface {
     idProducto: number;
@@ -7,4 +9,8 @@ export interface ProductosInterface {
     precio: number;
     imagen: string;
     categoria: CategoriasEnum;
+    edad: EdadEnum;
+    deletedAt: Date | string | null;
+    createdAt: Date;
+    updatedAt: Date;
 }
