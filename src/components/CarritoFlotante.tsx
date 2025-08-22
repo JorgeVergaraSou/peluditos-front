@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
-import CarritoModal from "./CarritoModal";
+import CarritoModalWhatsApp from "./CarritoModalWhatsapp";
 
 const CarritoFlotante = () => {
   const productos = useAppSelector((state) => state.carrito.productos);
@@ -30,7 +30,7 @@ const CarritoFlotante = () => {
         )}
       </button>
 
-      <CarritoModal open={open} onClose={() => setOpen(false)} />
+      <CarritoModalWhatsApp open={open} onClose={() => setOpen(false)} />
     </>
   );
 };
