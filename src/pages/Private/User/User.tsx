@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+/*import { useSelector } from 'react-redux';
 import { AppStore } from '../../../redux/store';
 
 
@@ -14,4 +14,4 @@ function UserPage() {
   );
 }
 
-export default UserPage;
+export default UserPage;*/

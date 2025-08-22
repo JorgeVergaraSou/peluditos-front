@@ -7,8 +7,6 @@ export const getRoleRoute = (role: Roles): string => {
       return `/${PrivateRoutes.ADMIN}`;
     case Roles.USER:
       return `/${PrivateRoutes.USER}`;
-    case Roles.GUEST:
-      return `/${PrivateRoutes.GUEST}`;
     default:
       return `/${PublicRoutes.LOGIN}`;
   }
