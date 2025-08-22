@@ -15,8 +15,13 @@ export function Sidebar() {
         <Link to={`/${PrivateRoutes.NUEVO_PRODUCTO}`} className="btn btn-outline-primary">
           Nuevo Producto
         </Link>
+
         <Link to={`/${PrivateRoutes.LISTAR_PRODUCTOS}`} className="btn btn-outline-secondary">
           Listado Productos
+        </Link>
+
+        <Link to={`/${PrivateRoutes.LOGOUT}`} className="btn btn-outline-secondary">
+          Cerrar Sesión
         </Link>
       </nav>
     </div>

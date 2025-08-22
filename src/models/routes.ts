@@ -1,6 +1,6 @@
 // src/models/routes.ts
 export const PublicRoutes = {
-    LOGIN: 'login',
+    LOGIN: '/login',
     REGISTER: 'register',
     HOME_PAGE: 'home_page',
     CATEGORIA_PAGE: '/productos/categoria/:categoria',

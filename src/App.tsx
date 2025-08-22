@@ -27,14 +27,19 @@ function AppContent() {
 
   return (
     <>
-      <Header />
+      {!esPaginaProtegida && (
+        <>
+          <Header />
+        </>
+      )}
+
 
       <RoutesWithNotFound>
         {/* Rutas públicas */}
         <Route path="/" element={<Navigate replace to={PublicRoutes.HOME_PAGE} />} />
         <Route path={PublicRoutes.HOME_PAGE} element={<HomePage />} />
         <Route path={PublicRoutes.LOGIN} element={<Login />} />
-         <Route path="/productos/categoria/:categoria" element={<CategoriaPage />} />
+        <Route path="/productos/categoria/:categoria" element={<CategoriaPage />} />
 
         {/* Rutas privadas protegidas */}
         <Route element={<AuthGuard privateValidation={true} />}>

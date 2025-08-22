@@ -1,3 +1,4 @@
+//src/components/Logout/Logout.tsx
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetUser, UserKey } from '../../redux/states/user';
